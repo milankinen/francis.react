@@ -1,0 +1,55 @@
+{
+  "name": "francis.react",
+  "version": "0.0.0",
+  "private": false,
+  "description": "React integration for Francis",
+  "main": "dist/francis.react.js",
+  "jsnext:main": "dist/francis.react.esm.js",
+  "module": "dist/francis.react.esm.js",
+  "types": "src/index.d.ts",
+  "author": "Matti Lankinen <m.lankinen@iki.fi>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milankinen/francis.react.git"
+  },
+  "keywords": [
+    "francis",
+    "reactive",
+    "programming",
+    "react",
+    "vdom"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf dist && mkdir dist",
+    "postbuild": "echo 'gzipped bundle sizes'; for js in dist/*.js; do echo \"$js : $(gzip-size $js)\"; done",
+    "build": "for c in build/*; do rollup -c $c; done",
+    "dev": "parcel test/dev.html --open"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.7.20",
+    "francis": ">=2.0.0",
+    "react": ">=16.8.0-alpha.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.2",
+    "@types/react-dom": "16.0.11",
+    "babel-plugin-annotate-pure-calls": "0.4.0",
+    "francis": "2.0.0",
+    "gzip-size-cli": "3.0.0",
+    "parcel-bundler": "1.11.0",
+    "react": "16.8.0-alpha.1",
+    "react-dom": "16.8.0-alpha.1",
+    "rollup": "1.1.2",
+    "rollup-plugin-babel": "4.3.2",
+    "rollup-plugin-buble": "0.19.6",
+    "rollup-plugin-commonjs": "9.2.0",
+    "rollup-plugin-replace": "2.1.0",
+    "rollup-plugin-uglify": "6.0.1",
+    "ts-jest": "23.10.5",
+    "ts-node": "8.0.1",
+    "tslint": "5.12.1",
+    "typescript": "3.2.4",
+    "typescript-snapshots-plugin": "1.5.3"
+  }
+}
