@@ -1,4 +1,4 @@
-# `francis.react`
+# francis.react
 
 The official type-safe React bindings for [Francis](https://github.com/milankinen/francis).
 
@@ -8,8 +8,6 @@ The official type-safe React bindings for [Francis](https://github.com/milankine
 
 ## Installation
 
-**NOTE:** `francis.react` requires `francis >= 2.0.0` and `react >= 16.8.0-alpha.1` as a peer dependency so installing these packages is required to use `francis.react` package.
-
 ```bash
 # npm
 npm i --save francis.react francis react@next
@@ -17,6 +15,9 @@ npm i --save francis.react francis react@next
 # yarn
 yarn add francis.react francis react@next
 ```
+
+**NOTE:** `francis.react` requires `francis >= 2.0.0` and `react >= 16.8.0-alpha.1` as a
+peer dependency so installing these packages is required to use `francis.react` package.
 
 If you're using TypeScript, you also need to install `@types/react`
 
@@ -102,7 +103,7 @@ const Component = () => {
 
 ### React Suspense compatibility
 
-`francis.react` is compatbile with React Suspense. If any of the embedded
+`francis.react` is compatible with React Suspense. If any of the embedded
 observables do not resolve (emit their first value) synchronously, the whole
 sub-tree gets suspended. Handling suspension is done like in normal React apps:
 
