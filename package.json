@@ -1,6 +1,6 @@
 {
   "name": "francis.react",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": false,
   "description": "React integration for Francis",
   "main": "dist/francis.react.js",
@@ -26,7 +26,8 @@
     "build": "for c in build/*; do rollup -c $c; done",
     "dev": "parcel test/app.html --open",
     "test": "jest",
-    "test:ci": "jest --runInBand"
+    "test:ci": "jest --runInBand",
+    "prepublishOnly": "npm t && npm run build"
   },
   "peerDependencies": {
     "francis": ">=2.0.0",
