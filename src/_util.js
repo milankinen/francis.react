@@ -10,6 +10,17 @@ export function isObject(x) {
   }
 }
 
+/*#__PURE__*/
+export function curry2(f) {
+  return function(a1, a2) {
+    if (arguments.length < 2) {
+      return a2 => f(a1, a2);
+    } else {
+      return f(a1, a2);
+    }
+  };
+}
+
 export function collectObservables(input, output) {
   let has = false;
   const keys = Object.keys(input);

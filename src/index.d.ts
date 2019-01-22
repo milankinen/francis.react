@@ -1,4 +1,4 @@
-import { Observable } from "francis";
+import { Observable, Atom, AnyEvent } from "francis";
 import * as React from "react";
 
 type Reactive<T> =
@@ -29,6 +29,23 @@ type FrancisHTMLProps<E, T> = E extends React.HTMLAttributes<T>
 type FrancisSVGProps<T> = FrancisSVGAttributes<T> & FrancisClassAttributes<T>;
 
 declare module "react" {
+  /**
+   * Creates local state atom that preserves its state over re-renders.
+   *
+   * @param initialValue Initial value of the local state atom
+   */
+  export function useStateAtom<ValueType>(
+    initialValue: ValueType
+  ): Atom<ValueType>;
+
+  export function useSubscription<ValueType>(
+    f: (event: AnyEvent<ValueType>) => any
+  ): (observable: Observable<ValueType>) => void;
+  export function useSubscription<ValueType>(
+    f: (event: AnyEvent<ValueType>) => any,
+    observable: Observable<ValueType>
+  ): void;
+
   namespace JSX {
     interface IntrinsicElements {
       // HTML
