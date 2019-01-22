@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es2015",
+    "lib": ["dom", "esnext"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "typescript-snapshots-plugin"
+      }
+    ]
+  },
+  "include": ["test/*.tsx"]
+}

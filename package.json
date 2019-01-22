@@ -24,7 +24,9 @@
     "prebuild": "rm -rf dist && mkdir dist",
     "postbuild": "echo 'gzipped bundle sizes'; for js in dist/*.js; do echo \"$js : $(gzip-size $js)\"; done",
     "build": "for c in build/*; do rollup -c $c; done",
-    "dev": "parcel test/dev.html --open"
+    "dev": "parcel test/app.html --open",
+    "test": "jest",
+    "test:ci": "jest --runInBand"
   },
   "peerDependencies": {
     "@types/react": ">=16.7.20",
@@ -33,11 +35,18 @@
   },
   "devDependencies": {
     "@babel/core": "7.2.2",
+    "@types/expect-puppeteer": "^3.3.0",
+    "@types/jest": "^23.3.13",
+    "@types/parcel-bundler": "^1.10.1",
+    "@types/puppeteer": "^1.9.0",
     "@types/react-dom": "16.0.11",
     "babel-plugin-annotate-pure-calls": "0.4.0",
-    "francis": "2.0.0",
+    "expect-puppeteer": "^3.5.1",
+    "francis": "^2.0.0",
     "gzip-size-cli": "3.0.0",
+    "jest": "^23.6.0",
     "parcel-bundler": "1.11.0",
+    "puppeteer": "^1.11.0",
     "react": "16.8.0-alpha.1",
     "react-dom": "16.8.0-alpha.1",
     "rollup": "1.1.2",
@@ -51,5 +60,30 @@
     "tslint": "5.12.1",
     "typescript": "3.2.4",
     "typescript-snapshots-plugin": "1.5.3"
+  },
+  "jest": {
+    "globals": {
+      "__FRANCIS_DEV__": 1,
+      "ts-jest": {
+        "diagnostics": {
+          "ignoreCodes": [
+            151001
+          ]
+        }
+      }
+    },
+    "transform": {
+      "^.+\\.tsx$": "ts-jest"
+    },
+    "testRegex": "/test/suite.tsx$",
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }
