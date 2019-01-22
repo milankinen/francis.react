@@ -1,5 +1,5 @@
 import { isError, isNext, subscribe } from "francis";
-import React, { memo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { isObject, collectObservables as collect } from "./_util";
 
 const $ = React.createElement;
@@ -8,13 +8,15 @@ const LIFT = "francis-lift";
 let stateInstanceCache = {};
 let instanceId = 0;
 
-const Wrapper = memo(props => {
+const Wrapper = props => {
   const s = useState({ id: instanceId++ });
   const state = s[0];
   const instance = activate(state.id, props, s[1]);
-  useEffect(() => () => deactivate(state.id), []);
+  useEffect(() => {
+    return () => deactivate(state.id);
+  }, []);
   return $(Value, { instance });
-});
+};
 
 Wrapper.displayName = "Francis.Wrapper";
 
@@ -99,7 +101,6 @@ class StateInstance {
 
   activate(next) {
     if (next !== this.current) {
-      console.log("activate");
       const { props, ch, obs } = next;
       this.current = next;
       this.activating = true;
@@ -114,7 +115,6 @@ class StateInstance {
   }
 
   deactivate() {
-    console.log("deactivate");
     const { subscriptions } = this;
     this.prev = this.notify = void 0;
     this.state = this.subscriptions = {};
